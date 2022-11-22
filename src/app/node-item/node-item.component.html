@@ -1,0 +1,35 @@
+<div class='node-item-container'>
+    <div class='node-item' [ngClass]="nodeItem.type !== 'unset' ? (nodeItem.name ? 'hover-hightlight': 'highlight') : ''">
+        
+        <ng-template [ngIf]='nodeItem.type === "unset"'>
+            <button (click)='selectTheNodetype("file")'>file</button>
+            <button (click)='selectTheNodetype("folder")'>folder</button>
+          </ng-template>
+
+      <ng-template [ngIf]='["folder", "file"].includes(nodeItem.type!)'>
+  
+        <ng-template [ngIf]='nodeItem.name' [ngIfElse]='nodeNameInputRef'>
+          <img class='folder-file-icon'
+            [src]="nodeItem.type === 'file' ? 'assets/images/file-regular.svg' : 'assets/images/folder-open-regular.svg'">
+          <span class='name'>{{nodeItem.name}}</span>
+          <i class="fas fa-plus-circle" *ngIf='nodeItem.type === "folder"' (click)='addChildNodes()'></i>
+          <i class="fas fa-minus-circle" (click)='deleteNode()'></i>
+        </ng-template>
+  
+        <ng-template #nodeNameInputRef>
+          <img class='folder-file-icon'
+            [src]="nodeItem.type === 'file' ? 'assets/images/file-regular.svg' : 'assets/images/folder-open-regular.svg'">
+          <input #nameInput class="nameInput"/>
+          <i class="fas fa-check-square fa-lg"  (click)='updateNodeWithName(nameInput.value)'></i>
+          <i class="far fa-window-close fa-lg" (click)='deleteNode()'></i>
+        </ng-template>
+  
+      </ng-template>
+  
+    </div>
+  </div>
+  
+  <div *ngIf='nodeItem?.children?.length' class="child-node-item">
+    <app-node-item *ngFor='let childNode of nodeItem?.children' [nodeItem]='childNode' (deleteNodeEvent)='deleteChildNode($event)'></app-node-item>
+  </div>
+  

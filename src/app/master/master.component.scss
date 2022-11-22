@@ -1,0 +1,31 @@
+.folder-structure-header {
+    background: black;
+    color: white;
+    letter-spacing: 3px;
+    text-align: center;
+    padding: 15px;
+  }
+  
+  .folder-structure-content {
+    padding: 24px;
+
+    .add-root-folder-action {
+      padding: 12px 20px;
+      color: white;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      background: black;
+      cursor: pointer;
+    
+      &:hover,
+      &:focus,
+      &:active {
+        border: 1px solid white;
+        outline: 2px solid black;
+      }
+    }
+
+    .node-list-container {
+      margin: 20px 0;
+    }
+  }

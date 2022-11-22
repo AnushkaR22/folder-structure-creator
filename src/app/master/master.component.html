@@ -1,0 +1,10 @@
+<header class="folder-structure-header">
+    <h2>Folder Structure Maker</h2>
+</header>
+
+<section class='folder-structure-content'>
+    <button (click)='addRootNodeToList()' class="add-root-folder-action">Add folder to root</button>
+    <div class='node-list-container'>
+        <app-node-item *ngFor='let node of nodeLists' [nodeItem]='node' (deleteNodeEvent)="removeRootNode($event)"></app-node-item>
+    </div>
+</section>
